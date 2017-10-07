@@ -1,8 +1,12 @@
 const express = require('express');
 const router = express.Router();
+var cors = require('cors')
 const faker = require('faker');
 const user = require('../user');
 const db = require('../db/dbApi')
+
+
+router.use(cors())
 
 
 /* GET api listing. */
@@ -14,7 +18,7 @@ router.get('/', (req, res) => {
 
 router.get('/getusers', (req, res) => {
   console.log("Invoked get users")
-
+ 
   db.query('SELECT json_agg(doc) FROM  user_detail', (err, res1) => {
     console.log(res1.rows[0].json_agg)
     res.send(JSON.stringify(res1.rows[0].json_agg));
