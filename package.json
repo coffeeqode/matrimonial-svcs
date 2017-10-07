@@ -1,0 +1,25 @@
+{
+  "name": "matrimonial-svcs",
+  "version": "1.0.0",
+  "description": "services for the matrimonial project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Hello World\"",
+    "server": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coffeeqode/matrimonial-svcs.git"
+  },
+  "author": "Sandesh Patil",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/coffeeqode/matrimonial-svcs/issues"
+  },
+  "homepage": "https://github.com/coffeeqode/matrimonial-svcs#readme",
+  "devDependencies": {
+    "express": "^4.16.1",
+    "faker": "^4.1.0",
+    "pg": "^7.3.0"
+  }
+}
