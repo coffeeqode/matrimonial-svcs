@@ -1,16 +1,40 @@
-INSERT INTO "user".user_detail(
-	  user_first_name, user_last_name,  doc)
-	VALUES ('Sandesh', 'Patil', '{
+create table "user".user_detail 
+(
+     userid serial,
+     doc jsonb not null
+);
+
+
+create table user_detail 
+(
+     userid serial,
+     doc jsonb not null
+);
+
+
+drop table "user".user_detail 
+
+INSERT INTO "user".user_detail(doc) VALUES ( '{
             "first_name":"Sandesh",
             "last_name":"Patil"
             }');
     
-    select * from "user".user_detail
- delete from "user".user_detail   
-    SELECT '5'::json;
+select * from "user".user_detail
  
+delete from "user".user_detail   
+  
  
- alter table "user".user_detail
- add doc JSONB not null;
- 
+create table user_detail 
+(
+     userid serial,
+     doc jsonb not null
+);
+  
+
+
+
+INSERT INTO user_detail(doc) VALUES ( '{
+            "first_name":"Sandesh",
+            "last_name":"Patil"
+            }');
  

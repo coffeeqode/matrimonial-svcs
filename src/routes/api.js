@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 router.get('/getusers', (req, res) => {
   console.log("Invoked get users")
 
-  db.query('SELECT json_agg(doc) FROM "user".user_detail', (err, res1) => {
+  db.query('SELECT json_agg(doc) FROM  user_detail', (err, res1) => {
     console.log(res1.rows[0].json_agg)
     res.send(JSON.stringify(res1.rows[0].json_agg));
   }
@@ -27,7 +27,7 @@ router.get('/getusers', (req, res) => {
 router.get('/getuser', (req, res) => {
   var username = req.query.username;
   console.log("Invoked get user for username: " + username)
-  var querystring = 'select json_agg(doc)  from "user".user_detail	where doc @> $1';
+  var querystring = 'select json_agg(doc)  from  user_detail	where doc @> $1';
   var jsonParams = {
     "username": username
   }
@@ -49,8 +49,8 @@ router.get('/saveuser', (req, res) => {
   console.log("Invoked saveuser")
   var user = { "last_name": "Nawale", "first_name": "Snehal" };
 
-  db.query('INSERT INTO "user".user_detail( user_first_name, user_last_name,  doc) VALUES ($1,$2,$3)',
-    ['Snehal', 'Nawale', user], (err, res1) => {
+  db.query('INSERT INTO user_detail( doc) VALUES ($1)',
+    [user], (err, res1) => {
       console.log(res1)
       res.send("Insert Complete: " + JSON.stringify(user));
     }
@@ -67,8 +67,8 @@ router.get('/savefaker', (req, res) => {
       faker.name.firstName(), faker.name.lastName(), faker.date.future(), "Unmarried", faker.name.jobArea,
       faker.address.city(), faker.address.country(), faker.phone.phoneNumber(), faker.image.avatar());
 
-    db.query('INSERT INTO "user".user_detail( user_first_name, user_last_name,  doc) VALUES ($1,$2,$3)',
-      [u.first, u.last, u], (err, res1) => {
+    db.query('INSERT INTO user_detail(doc) VALUES ($1)',
+      [u], (err, res1) => {
         console.log(res1)
       }
     );
@@ -83,7 +83,7 @@ router.get('/savefaker', (req, res) => {
 router.get('/truncateusers', (req, res) => {
   console.log("Invoked delete all")
 
-  db.query('truncate "user".user_detail', (err, res1) => {
+  db.query('truncate user_detail', (err, res1) => {
     console.log(res1)
     res.send("Truncate completed");
   }
