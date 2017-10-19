@@ -49,14 +49,16 @@ router.get('/getuser', (req, res) => {
 
 })
 
-router.get('/saveuser', (req, res) => {
+router.post('/saveuser', (req, res) => {
   console.log("Invoked saveuser")
-  var user = { "last_name": "Nawale", "first_name": "Snehal" };
+
+  var user = req.body.body;
+  console.log(user);
 
   db.query('INSERT INTO user_detail( doc) VALUES ($1)',
     [user], (err, res1) => {
       console.log(res1)
-      res.send("Insert Complete: " + JSON.stringify(user));
+      res.send(true);
     }
   );
 
