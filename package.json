@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Hello World\"",
-    "start": "node server.js"
+    "start": "NODE_ENV='development' node server.js",
+    "local-server": "NODE_ENV='local' node server.js"
   },
   "repository": {
     "type": "git",
